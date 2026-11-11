@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <!-- Hace que la página se adapte al celular -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Olga Quispe Quispe | Página personal</title>
+  <meta name="description" content="Página personal de Olga Quispe Quispe, estudiante de Guaqui.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ===== COLORES (tomados de tu hoja de vida: rosa y gris oscuro) ===== */
+    :root {
+      --rosa: #d98a8c;
+      --rosa-suave: #f6e3e3;
+      --oscuro: #3f3f42;
+      --texto: #2b2b2e;
+      --fondo: #fffafa;
+      --blanco: #ffffff;
+    }
+
+    /* ===== BASE ===== */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: 70px; }
+    body {
+      font-family: 'Poppins', Arial, sans-serif;
+      color: var(--texto);
+      background: var(--fondo);
+      line-height: 1.7;
+    }
+    a { color: inherit; }
+    section { padding: 80px 20px; }
+    .contenedor { max-width: 960px; margin: 0 auto; }
+    h2 { font-size: 1.9rem; margin-bottom: 28px; color: var(--oscuro); }
+    h2::after {
+      content: ""; display: block; width: 56px; height: 4px;
+      background: var(--rosa); margin-top: 8px; border-radius: 4px;
+    }
+    :focus-visible { outline: 3px solid var(--rosa); outline-offset: 3px; }
+
+    /* ===== MENÚ ===== */
+    header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 10;
+      background: var(--oscuro); color: var(--blanco);
+    }
+    .barra {
+      max-width: 960px; margin: 0 auto; padding: 0 20px; height: 62px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .logo { font-weight: 700; text-decoration: none; color: var(--rosa); }
+    nav ul { list-style: none; display: flex; gap: 24px; }
+    nav a { text-decoration: none; font-size: .95rem; padding: 6px 0; }
+    nav a:hover, nav a.activo { color: var(--rosa); }
+    #btn-menu {
+      display: none; background: none; border: 0; color: var(--blanco);
+      font-size: 1.8rem; cursor: pointer; line-height: 1;
+    }
+
+    /* ===== INICIO ===== */
+    #inicio {
+      min-height: 100vh; display: flex; align-items: center;
+      padding-top: 100px; background: var(--oscuro); color: var(--blanco);
+    }
+    #inicio .contenedor {
+      display: flex; align-items: center; gap: 48px; flex-wrap: wrap; justify-content: center;
+    }
+    .foto {
+      width: 220px; height: 220px; border-radius: 50%; object-fit: cover;
+      border: 8px solid var(--rosa); background: var(--rosa-suave);
+    }
+    .hero-texto { flex: 1 1 320px; }
+    .hero-texto h1 { font-size: clamp(2rem, 6vw, 3.4rem); line-height: 1.15; color: var(--rosa); }
+    .hero-texto p { margin: 16px 0 28px; font-size: 1.1rem; max-width: 460px; }
+    .boton {
+      display: inline-block; padding: 12px 26px; border-radius: 40px; border: 2px solid var(--rosa);
+      background: var(--rosa); color: var(--blanco); font: inherit; font-weight: 600;
+      text-decoration: none; cursor: pointer; transition: transform .2s, background .2s;
+    }
+    .boton:hover { transform: translateY(-2px); background: #c97678; }
+    .boton.vacio { background: transparent; color: var(--blanco); margin-left: 8px; }
+    .boton.vacio:hover { background: rgba(255,255,255,.1); }
+
+    /* ===== SOBRE MÍ ===== */
+    #sobre-mi p { max-width: 640px; font-size: 1.05rem; }
+
+    /* ===== EXPERIENCIA Y FORMACIÓN ===== */
+    #experiencia { background: var(--rosa-suave); }
+    .columnas { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; }
+    .linea { border-left: 4px solid var(--rosa); padding-left: 18px; }
+    .linea h3 { font-size: 1.15rem; margin-bottom: 14px; }
+    .item { margin-bottom: 14px; }
+    .item small { color: #77777b; font-weight: 500; }
+    .item strong { display: block; }
+
+    /* ===== HABILIDADES ===== */
+    .chips { display: flex; flex-wrap: wrap; gap: 12px; }
+    .chip {
+      background: var(--oscuro); color: var(--blanco); padding: 10px 22px;
+      border-radius: 40px; font-weight: 500;
+    }
+    .chip:nth-child(odd) { background: var(--rosa); }
+
+    /* ===== SERVICIOS ===== */
+    #servicios { background: var(--rosa-suave); }
+    .tarjetas { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
+    .tarjeta {
+      background: var(--blanco); border-radius: 14px; padding: 26px;
+      border-top: 5px solid var(--rosa);
+    }
+    .tarjeta h3 { margin-bottom: 8px; font-size: 1.1rem; }
+
+    /* ===== CONTACTO ===== */
+    .contacto-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 40px; }
+    .datos p { margin-bottom: 12px; overflow-wrap: anywhere; }
+    form { display: grid; gap: 14px; }
+    label { font-weight: 500; font-size: .95rem; }
+    input, textarea {
+      width: 100%; padding: 12px 14px; font: inherit; border: 2px solid #e2cfcf;
+      border-radius: 10px; background: var(--blanco);
+    }
+    input:focus, textarea:focus { border-color: var(--rosa); outline: none; }
+    textarea { min-height: 130px; resize: vertical; }
+    .error { color: #b3261e; font-size: .85rem; min-height: 1.2em; }
+    input.invalido, textarea.invalido { border-color: #b3261e; }
+    #estado { font-weight: 600; min-height: 1.5em; }
+    #estado.ok { color: #2e7d32; }
+    #estado.mal { color: #b3261e; }
+    .oculto-trampa { position: absolute; left: -9999px; } /* campo trampa anti-spam */
+
+    footer { background: var(--oscuro); color: var(--blanco); text-align: center; padding: 22px; font-size: .9rem; }
+
+    /* ===== ANIMACIÓN AL BAJAR (solo se activa con JavaScript) ===== */
+    .js .aparecer { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+    .js .aparecer.visible { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .js .aparecer { transition: none; opacity: 1; transform: none; }
+    }
+
+    /* ===== CELULAR ===== */
+    @media (max-width: 760px) {
+      #btn-menu { display: block; }
+      nav {
+        position: absolute; top: 62px; left: 0; right: 0; background: var(--oscuro);
+        max-height: 0; overflow: hidden; transition: max-height .35s ease;
+      }
+      nav.abierto { max-height: 380px; }
+      nav ul { flex-direction: column; gap: 0; padding: 8px 20px 16px; }
+      nav a { display: block; padding: 12px 0; }
+      .columnas, .contacto-grid { grid-template-columns: 1fr; }
+      section { padding: 64px 20px; }
+      .boton.vacio { margin: 10px 0 0; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ===== MENÚ SUPERIOR ===== -->
+  <header>
+    <div class="barra">
+      <a class="logo" href="#inicio">Olga Quispe</a>
+      <button id="btn-menu" aria-label="Abrir menú" aria-expanded="false">☰</button>
+      <nav id="menu">
+        <ul>
+          <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#sobre-mi">Sobre mí</a></li>
+          <li><a href="#experiencia">Experiencia</a></li>
+          <li><a href="#habilidades">Habilidades</a></li>
+          <li><a href="#servicios">Servicios</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- ===== INICIO ===== -->
+    <section id="inicio">
+      <div class="contenedor">
+        <img class="foto" src="foto.jpg" alt="Foto de Olga Quispe Quispe">
+        <div class="hero-texto">
+          <h1>Olga Quispe Quispe</h1>
+          <p>Amable, responsable y puntual. Me gusta aprender, ayudar a los demás y cumplir con mis responsabilidades.</p>
+          <a class="boton" href="#contacto">Contáctame</a>
+          <!-- Descarga tu hoja de vida (el archivo debe llamarse hoja-de-vida.jpg) -->
+          <a class="boton vacio" href="hoja-de-vida.jpg" download>Descargar mi hoja de vida</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SOBRE MÍ ===== -->
+    <section id="sobre-mi">
+      <div class="contenedor aparecer">
+        <h2>Sobre mí</h2>
+        <p>Soy una persona amable, responsable y puntual, con buena actitud para trabajar. Me gusta aprender, ayudar a los demás y cumplir con mis responsabilidades.</p>
+        <p style="margin-top:12px">Vivo en Guaqui y hablo aimara.</p>
+      </div>
+    </section>
+
+    <!-- ===== EXPERIENCIA Y FORMACIÓN ===== -->
+    <section id="experiencia">
+      <div class="contenedor aparecer">
+        <h2>Experiencia y formación</h2>
+        <div class="columnas">
+          <div class="linea">
+            <h3>Formación</h3>
+            <div class="item">
+              <small>2024 – 2025</small>
+              <strong>Universidad Increíble</strong>
+            </div>
+            <div class="item"><strong>Curso de Excel con la IA</strong></div>
+            <div class="item"><strong>Cursos de contabilidad básica</strong></div>
+          </div>
+          <div class="linea">
+            <h3>Experiencia</h3>
+            <div class="item">
+              <small>2024 – 2025</small>
+              <strong>Pasantía</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== HABILIDADES ===== -->
+    <section id="habilidades">
+      <div class="contenedor aparecer">
+        <h2>Habilidades</h2>
+        <div class="chips">
+          <span class="chip">Manejo de Excel básico</span>
+          <span class="chip">Edición de video</span>
+          <span class="chip">Diseño gráfico</span>
+          <span class="chip">Aimara</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SERVICIOS ===== -->
+    <section id="servicios">
+      <div class="contenedor aparecer">
+        <h2>Servicios</h2>
+        <div class="tarjetas">
+          <div class="tarjeta">
+            <h3>Trabajos en Excel</h3>
+            <p>Tablas y registros básicos en Excel.</p>
+          </div>
+          <div class="tarjeta">
+            <h3>Edición de video</h3>
+            <p>Edición de videos sencillos.</p>
+          </div>
+          <div class="tarjeta">
+            <h3>Diseño gráfico</h3>
+            <p>Diseños gráficos para tus ideas.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CONTACTO ===== -->
+    <section id="contacto">
+      <div class="contenedor aparecer">
+        <h2>Contacto</h2>
+        <div class="contacto-grid">
+          <div class="datos">
+            <p><strong>Teléfono</strong><br><a href="tel:+59164100738">64100738</a></p>
+            <p><strong>Correo</strong><br><a href="mailto:quispequispeolga445@gmail.com">quispequispeolga445@gmail.com</a></p>
+            <p><strong>Dirección</strong><br>Guaqui, Belén pituta A</p>
+          </div>
+
+          <!-- Formulario: los mensajes llegan a tu Hoja de cálculo de Google -->
+          <form id="formulario" novalidate>
+            <div>
+              <label for="nombre">Nombre</label>
+              <input type="text" id="nombre" name="nombre" autocomplete="name">
+              <div class="error" id="error-nombre"></div>
+            </div>
+            <div>
+              <label for="correo">Correo</label>
+              <input type="email" id="correo" name="correo" autocomplete="email">
+              <div class="error" id="error-correo"></div>
+            </div>
+            <div>
+              <label for="mensaje">Mensaje</label>
+              <textarea id="mensaje" name="mensaje"></textarea>
+              <div class="error" id="error-mensaje"></div>
+            </div>
+            <!-- Campo trampa: las personas no lo ven, los robots sí lo llenan -->
+            <input type="text" name="web" class="oculto-trampa" tabindex="-1" autocomplete="off" aria-hidden="true">
+            <button class="boton" type="submit" id="btn-enviar">Enviar mensaje</button>
+            <div id="estado" role="status" aria-live="polite"></div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>© <span id="anio"></span> Olga Quispe Quispe</footer>
+
+  <script>
+    // Avisamos al CSS que JavaScript funciona (así las animaciones se activan)
+    document.documentElement.classList.add('js');
+
+    // ===== 1. MENÚ DE CELULAR: abrir y cerrar =====
+    const btnMenu = document.getElementById('btn-menu');
+    const menu = document.getElementById('menu');
+
+    btnMenu.addEventListener('click', () => {
+      const abierto = menu.classList.toggle('abierto');
+      btnMenu.setAttribute('aria-expanded', abierto);
+      btnMenu.textContent = abierto ? '✕' : '☰';
+    });
+
+    // Al tocar un enlace del menú, se cierra solo
+    menu.querySelectorAll('a').forEach(enlace => {
+      enlace.addEventListener('click', () => {
+        menu.classList.remove('abierto');
+        btnMenu.setAttribute('aria-expanded', 'false');
+        btnMenu.textContent = '☰';
+      });
+    });
+
+    // ===== 2. ANIMACIÓN SUAVE AL BAJAR =====
+    const aparecer = document.querySelectorAll('.aparecer');
+    if ('IntersectionObserver' in window) {
+      const observador = new IntersectionObserver((entradas) => {
+        entradas.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('visible');
+            observador.unobserve(e.target); // se anima una sola vez
+          }
+        });
+      }, { threshold: 0.15 });
+      aparecer.forEach(el => observador.observe(el));
+    } else {
+      aparecer.forEach(el => el.classList.add('visible')); // navegadores antiguos
+    }
+
+    // ===== 3. MARCAR EN EL MENÚ LA SECCIÓN ACTUAL =====
+    const secciones = document.querySelectorAll('main section');
+    const enlaces = document.querySelectorAll('nav a');
+    window.addEventListener('scroll', () => {
+      let actual = '';
+      secciones.forEach(s => { if (window.scrollY >= s.offsetTop - 120) actual = s.id; });
+      enlaces.forEach(a => a.classList.toggle('activo', a.getAttribute('href') === '#' + actual));
+    });
+
+    // ===== 4. FORMULARIO: validación y envío a Google Sheets =====
+    // ⚠️ PEGA AQUÍ la URL que te da Google al implementar (termina en /exec)
+    const URL_SCRIPT = 'https://script.google.com/macros/s/AKfycbxNcxsOpemn_oJ35FL3CHeUe_ScdG8UsXNQBw4dMDX2toPTUg7LcAuHGIVEp58tibSbEw/exec';
+
+    const form = document.getElementById('formulario');
+    const estado = document.getElementById('estado');
+    const btnEnviar = document.getElementById('btn-enviar');
+
+    // Muestra u oculta el error de un campo
+    function marcar(campo, texto) {
+      document.getElementById('error-' + campo.id).textContent = texto;
+      campo.classList.toggle('invalido', texto !== '');
+      return texto === '';
+    }
+
+    // Revisa los 3 campos
+    function validar() {
+      const nombre = form.nombre, correo = form.correo, mensaje = form.mensaje;
+      const okNombre = marcar(nombre, nombre.value.trim().length < 2 ? 'Escribe tu nombre.' : '');
+      const okCorreo = marcar(correo, /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(correo.value.trim()) ? '' : 'Escribe un correo válido, por ejemplo nombre@gmail.com.');
+      const okMensaje = marcar(mensaje, mensaje.value.trim().length < 5 ? 'Escribe tu mensaje (mínimo 5 letras).' : '');
+      return okNombre && okCorreo && okMensaje;
+    }
+
+    form.addEventListener('submit', async (evento) => {
+      evento.preventDefault(); // evita que la página se recargue
+      estado.className = ''; estado.textContent = '';
+      if (!validar()) return;
+
+      if (URL_SCRIPT.startsWith('PEGA_AQUI')) {
+        estado.className = 'mal';
+        estado.textContent = 'Falta pegar la URL de Apps Script en el código.';
+        return;
+      }
+
+      btnEnviar.disabled = true;
+      btnEnviar.textContent = 'Enviando...';
+      try {
+        // Enviamos los datos a Google (no-cors: Google no devuelve respuesta legible)
+        await fetch(URL_SCRIPT, { method: 'POST', mode: 'no-cors', body: new FormData(form) });
+        estado.className = 'ok';
+        estado.textContent = '¡Mensaje enviado!';
+        form.reset();
+      } catch (error) {
+        estado.className = 'mal';
+        estado.textContent = 'No se pudo enviar. Revisa tu internet e inténtalo otra vez.';
+      } finally {
+        btnEnviar.disabled = false;
+        btnEnviar.textContent = 'Enviar mensaje';
+      }
+    });
+
+    // Año automático en el pie de página
+    document.getElementById('anio').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
